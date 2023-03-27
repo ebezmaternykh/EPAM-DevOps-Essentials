@@ -1,5 +1,10 @@
 #Get the input file as an argument
 param($InputFile)
+#Check if the input file was passed without path
+if ( $InputFile -notmatch '.*\\.*' )
+    { 
+        $InputFile = ".\"+$InputFile
+    }
 #Define the output file
 $OutputFile = (Split-Path $InputFile)+"\accounts_new.csv"
 #Import the file to an array
